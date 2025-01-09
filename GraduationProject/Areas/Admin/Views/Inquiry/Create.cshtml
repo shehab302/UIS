@@ -1,0 +1,59 @@
+﻿@model Models.Inquiry
+
+<h4 class="mb-4 text-primary">Inquiry Details</h4>
+<hr />
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+            @*     <!-- Display Read-Only Fields -->
+                <div class="mb-3">
+                   
+                </div> *@
+
+
+                <!-- Form for Employee Note and Response -->
+                <form asp-action="Create" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="StudentEmail" />
+                    <input type="hidden" asp-for="Subject"  />
+                    <input type="hidden" asp-for="Message">
+                    <input type="hidden" asp-for="Status">
+                    <input type="hidden" asp-for="DateSent">
+                    <input type="hidden" name="ResponseDate" value="@ViewBag.Time">
+
+
+                    <div class="mb-3">
+                        <label asp-for="EmployeeNote" class="form-label fw-bold">Employee Note</label>
+                        <textarea asp-for="EmployeeNote" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="EmployeeNote" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="EmployeeResponse" class="form-label fw-bold">Response</label>
+                        <textarea asp-for="EmployeeResponse" class="form-control" rows="4"></textarea>
+                        <span asp-validation-for="EmployeeResponse" class="text-danger"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="bi bi-save"></i> Send Response
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="mt-3 text-center">
+            <a asp-action="Index" class="btn btn-link text-decoration-none">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial">
+}

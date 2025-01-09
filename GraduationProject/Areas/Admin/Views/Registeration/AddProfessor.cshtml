@@ -1,0 +1,134 @@
+﻿@model Models.ViewModels.MemberVM
+@section Scripts {
+    <partial name="_TempDataPartial.cshtml">
+        <partial name="_ValidationScriptsPartial.cshtml">
+    }
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">اضافة دكتور جامعي جديد</h2>
+        <form asp-action="AddProfessor" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+            <!-- SSN -->
+            <div class="mb-3">
+                <label class="form-label">رقم الضمان الاجتماعي</label>
+                <input type="text" class="form-control" asp-for="SSN" required>
+                <span asp-validation-for="SSN" class="text-warning"></span>
+            </div>
+
+            <!-- First Name, Middle Name, Last Name -->
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">الاسم الاول</label>
+                    <input type="text" class="form-control" asp-for="FName" required>
+                    <span asp-validation-for="FName" class="text-warning"></span>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">الاسم الثاني</label>
+                    <input type="text" class="form-control" asp-for="MName" required>
+                    <span asp-validation-for="MName" class="text-warning"></span>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">الاسم الثالث</label>
+                    <input type="text" class="form-control" asp-for="LName" required>
+                    <span asp-validation-for="LName" class="text-warning"></span>
+                </div>
+            </div>
+
+             <div class="mb-3">
+            <label for="phoneNumbers" class="form-label">ارقام التليفون</label>
+            <div id="phoneNumbersContainer">
+                <div class="d-flex align-items-center mb-2">
+                            <input type="text" name="MemberPhones[0]" class="form-control me-2" placeholder="ادخل رقم تليفون">
+                            <button type="button" class="btn btn-sm" style="background-color:#2b6cac; color: #fff;" id="addPhoneNumber">اضافة</button>
+                </div>
+            </div>
+        </div>
+
+            <!-- Upload Image -->
+            <div class="mb-3">
+                <label class="form-label">حمل صورة </label>
+                <input type="file" class="form-control" asp-for="ImgUrl" required>
+                <span asp-validation-for="ImgUrl" class="text-warning"></span>
+            </div>
+
+            <!-- Gender -->
+            <div class="mb-3">
+                <label for="gender" class="form-label">النوع</label>
+                <select class="form-select" asp-for="Gender" required>
+                    <option value="">اختر النوع</option>
+                    @foreach (var gender in ViewBag.EnumGender)
+                    {
+                        <option value="@gender">@gender</option>
+                    }
+                </select>
+                <span asp-validation-for="Gender" class="text-warning"></span>
+            </div>
+
+            <input type="hidden" id="ProfessorName" name="IsProfessor" value="1">
+
+            <!-- Address -->
+            <div class="mb-3">
+                <label for="address" class="form-label">العنوان</label>
+                <input type="text" class="form-control" asp-for="Address" required>
+                <span asp-validation-for="Address" class="text-warning"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">الايميل</label>
+                <input type="email" class="form-control" asp-for="Email" required>
+                <span asp-validation-for="Email" class="text-warning"></span>
+            </div>
+
+            <!-- Department -->
+            <div class="mb-3">
+                <label for="department" class="form-label">القسم</label>
+                <select class="form-select" asp-for="DepartmentId" asp-items="ViewBag.department" required>
+                    <option value="">اختر القسم</option>
+                </select>
+                <span asp-validation-for="DepartmentId" class="text-warning"></span>
+            </div>
+
+            <!-- Nationality and Experience -->
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">الجنسية</label>
+                    <input type="text" class="form-control" asp-for="Nationailty" required>
+                    <span asp-validation-for="Nationailty" class="text-warning"></span>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">عدد سنين الخبرة</label>
+                    <input type="number" class="form-control" asp-for="Experence" required>
+                    <span asp-validation-for="Experence" class="text-warning"></span>
+                </div>
+            </div>
+
+            <!-- Birth Date -->
+            <div class="mb-3">
+                <label for="birthDate" class="form-label">يوم الميلاد</label>
+                <input type="date" class="form-control" asp-for="BirthDate" required>
+                <span asp-validation-for="BirthDate" class="text-warning"></span>
+            </div>
+
+            <!-- Submit Button -->
+                <button type="submit" class="btn btn-lg w-100" style="background-color:#2b6cac; color: #fff;">اضافة</button>
+        </form>
+    </div>
+
+        <script>
+            document.getElementById('addPhoneNumber').addEventListener('click', function () {
+                const container = document.getElementById('phoneNumbersContainer');
+                const index = container.querySelectorAll('input[type="text"]').length;
+                const inputGroup = document.createElement('div');
+                inputGroup.className = 'd-flex align-items-center mb-2';
+                inputGroup.innerHTML = `
+
+                                                        <input type="text" name="PhoneNumbers[${index}]" class="form-control me-2" placeholder="Enter phone number">
+                                <button type="button" class="btn btn-danger btn-sm removePhoneNumber">Remove</button>
+                                    `;
+                container.appendChild(inputGroup);
+                inputGroup.querySelector('.removePhoneNumber').addEventListener('click', function () {
+                    container.removeChild(inputGroup);
+                });
+            });
+        </script>

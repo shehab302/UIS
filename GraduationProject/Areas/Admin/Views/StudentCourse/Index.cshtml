@@ -1,0 +1,51 @@
+﻿@using Utility
+@{
+    ViewData["Title"] = "Student Courses";
+}
+
+@using Models
+
+@model List<char>
+
+<div class="row mb-3">
+    <div class="col-9">
+        <h1 style="font-size: 2.5em; font-weight: bold;">مواد الطالب</h1>
+    </div>
+</div>
+
+<table class="table table-hover table-primary table-striped">
+    <thead>
+        <tr>
+            <th style="width: 10%;" scope="col">المستوي</th>
+            <th style="width: 40%;" scope="col">عدد درجات المستوي</th>
+            <th style="width: 50%;" scope="col">الاجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr class="table-light">
+                <td>@(i+1)</td>
+                <td>@Model[i]</td>
+                <td>
+                    <a href="/Admin/StudentCourse/Index2?studentId=@ViewBag.studentId&level=@(Enum.GetName(typeof(EnumLevel), i+1))" class="btn" style="background-color:#2b6cac; color: #fff;">المواد</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="row mb-3">
+    <div class="col-9">
+        <h1 style="font-size: 1.5em; font-weight: bold;">عدد الدرجات : @ViewBag.totalgrade</h1>
+    </div>
+</div>
+
+@if (User.IsInRole(SD.AdminRole))
+{
+    <div class="mt-4">
+        <a href="/Admin/Management/Index" class="btn" style="background-color:#2b6cac; color: #fff;">
+            <i class="bi bi-arrow-left"></i> العودة الي الوراء
+        </a>
+    </div>
+}

@@ -1,0 +1,73 @@
+﻿@model Models.TableLecSec
+
+<h4 class="mb-4 text-primary">Add Timetable for @ViewBag.day</h4>
+<hr />
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                    <!-- Day Field (Hidden) -->
+                    <input type="hidden" value="@ViewBag.DayId " name="TimetableId" class="form-control" />
+
+                    <div class="mb-3">
+                        <label asp-for="Type" class="form-label fw-bold">Type</label>
+                        <select class="form-select" asp-for="Type" required>
+                            <option value="">Select Type</option>
+                            @foreach (var item in ViewBag.EnumType)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+
+                        <span asp-validation-for="Type" class="text-danger"></span>
+                    </div>
+
+                    <!-- Start Time -->
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label fw-bold">Name</label>
+                        <input asp-for="Name" type="text" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="StartTime" class="form-label fw-bold">Start Time</label>
+                        <input asp-for="StartTime" type="time" class="form-control" />
+                        <span asp-validation-for="StartTime" class="text-danger"></span>
+                    </div>
+
+                    <!-- End Time -->
+                    <div class="mb-3">
+                        <label asp-for="EndTime" class="form-label fw-bold">End Time</label>
+                        <input asp-for="EndTime" type="time" class="form-control" />
+                        <span asp-validation-for="EndTime" class="text-danger"></span>
+                    </div>
+
+                  
+                    <!-- Submit Button -->
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-save"></i> Create
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="mt-3 text-center">
+            <a asp-action="Index" class="btn btn-link text-decoration-none">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+   
+}

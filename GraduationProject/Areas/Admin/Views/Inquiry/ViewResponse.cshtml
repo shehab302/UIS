@@ -1,0 +1,32 @@
+﻿@model Models.Inquiry
+
+<h2>Inquiry Details</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h4>Subject: @Model.Subject</h4>
+    </div>
+    <div class="card-body">
+        <p><strong>Student Email:</strong> @Model.StudentEmail</p>
+        <p><strong>Message:</strong></p>
+        <p>@Model.Message</p>
+        <p><strong>Date Sent:</strong> @Model.DateSent.ToString("dddd, dd MMMM yyyy hh:mm tt")</p>
+        <p><strong>Status:</strong> @Model.Status</p>
+        <p><strong>Status:</strong> @Model.EmployeeNote</p>
+        <p><strong>Status:</strong> @Model.EmployeeResponse</p>
+        <p><strong>Status:</strong> @Model.ResponseDate</p>
+
+    </div>
+    <div>
+       
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Details" asp-route-Id="@Model.Id" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+</div>
+@section Scripts {
+    <partial name="_TempDataPartial">
+}

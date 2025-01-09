@@ -1,0 +1,46 @@
+﻿@model Models.Department
+
+@{
+    ViewData["Title"] = "Edit Department";
+}
+ 
+<hr />
+<div class="row">
+    <div class="col-md-11">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DepartmentId" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">الاسم</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">الوصف</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="NumOfStudent" class="control-label">عدد الطلبة</label>
+                <input asp-for="NumOfStudent" class="form-control" />
+                <span asp-validation-for="NumOfStudent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumOfCourses" class="control-label">عدد المواد</label>
+                <input asp-for="NumOfCourses" class="form-control" />
+                <span asp-validation-for="NumOfCourses" class="text-danger"></span>
+            </div><br /> *@
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-lg w-100" style="background-color:#2b6cac; color: #fff;" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index" class="btn" style="background-color:#2b6cac; color: #fff;"><i class="bi bi-arrow-left ms-2"></i>العودة الي الوراء</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

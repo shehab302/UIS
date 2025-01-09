@@ -1,0 +1,96 @@
+﻿@using Utility
+@model Timetable
+
+<div class="row mb-4">
+    <div class="col">
+        <h2 class="text-primary">All Timetables in @Model.Day</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="text-center">Type</th>
+                    <th scope="col" class="text-center">Name</th>
+                    <th scope="col" class="text-center">Start Time</th>
+                    <th scope="col" class="text-center">End Time</th>
+                    @if (User.IsInRole(SD.Empolyee) || User.IsInRole(SD.AdminRole))
+                    {
+                        <th scope="col" class="text-center">Actions</th>
+                    }               
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.TableLecSecs != null && Model.TableLecSecs.Any())
+                {
+                    @foreach (var item in Model.TableLecSecs)
+                    {
+                        <tr>
+                            <td class="text-center">@item.Type</td>
+                            <td class="text-center">@item.Name</td>
+                            <td class="text-center">@item.StartTime</td>
+                            <td class="text-center">@item.EndTime</td>
+                                @if (User.IsInRole(SD.Empolyee) || User.IsInRole(SD.AdminRole))
+                                {
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-controller="Timetable" asp-area="Admin" asp-route-TableLecSecId="@item.TableLecSecId" asp-route-day="@Model.Day" class="btn btn-sm btn-warning me-2">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="@item.TableLecSecId">
+                                    <i class="bi bi-trash3-fill"></i> Delete
+                                </button>
+                            </td>
+                                }
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">No timetables available for this day.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Are you sure you want to delete this timetable?</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let deleteId;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const deleteButtons = document.querySelectorAll('button[data-bs-target="#deleteModal"]');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                deleteId = this.getAttribute('data-id');
+            });
+        });
+
+        document.getElementById('confirmDelete').addEventListener('click', function () {
+            window.location.href = '/Admin/Timetable/Delete?TableLecSecId=' + deleteId;
+        });
+    });
+</script>

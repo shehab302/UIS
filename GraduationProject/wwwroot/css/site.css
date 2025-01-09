@@ -1,0 +1,110 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+/*.sidebar {
+    overflow-y: auto;*/ /* Adds vertical scrolling */
+    /*max-height: 100vh;*/ /* Limits sidebar height to the viewport */
+    /*position: sticky;*/ /* Keeps the sidebar fixed when scrolling */
+    /*top: 0;*/ /* Sticks to the top */
+    /*color: white;
+}*/
+
+.sidebar .nav-link {
+    color: white; /* Ensure links are readable */
+}
+
+    .sidebar .nav-link:hover {
+        background-color: #005db8; /* Optional hover effect */
+        border-radius: 5px;
+    }
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    background-color: #2b6cac;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px;
+}
+
+.sidebar .brand {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    color: #d1d3e2;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar ul li a:hover {
+    background-color: #2c2f33;
+    color: white;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+
+
+
+.custom-timetable-class {
+    color: #ff5733;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+    .custom-timetable-class:hover {
+        background-color: #dcdcdc;
+        color: #000;
+    }

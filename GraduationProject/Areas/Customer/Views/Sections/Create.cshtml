@@ -1,0 +1,46 @@
+﻿@model Models.Sections
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>اضافة</h1>
+
+<h4>سكاشن</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CourseId" class="control-label">رقم المادة</label>
+                <input asp-for="CourseId" class="form-control" />
+                <span asp-validation-for="CourseId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">اسم السكشن</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecURL" class="control-label">وثيقة السكشن</label>
+                <input type="file" asp-for="SecURL" class="form-control" />
+                <span asp-validation-for="SecURL" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+               
+                <input type="hidden" asp-for="CourseId" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="اضافة" class="btn" style="background-color:#2b6cac; color: #fff;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial.cshtml">
+}

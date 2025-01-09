@@ -1,0 +1,62 @@
+﻿@page
+@model IndexModel
+
+
+<h3 class="mb-4">@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="contaroiner">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Profile Card -->
+            <div class="card shadow-sm border-0">
+                <div class="card-header text-center bg-primary text-white">
+                    <h4 class="mb-0">My Profile</h4>
+                </div>
+
+                <div class="card-body">
+                        @if(Model.ProfileImg!=null){
+                    <div class="text-center">
+                        <!-- Profile Image -->
+                        <img src="~/Img/@Model.ProfileImg"
+                             alt="User Profile Image"
+                             class="rounded-circle mb-3"
+                             style="width: 300px; height: 300px; object-fit: cover; border: 3px solid #007bff;">
+                        </div>
+                    }else
+                    {
+                        <div class="container mt-5 d-flex justify-content-center">
+                            <div class="circle-container">
+                                <h2>Hello Admin</h2>
+                            </div>
+                        </div>
+                    }
+
+                    <hr>
+
+                    <!-- User Details -->
+                    <div class="row mb-3">
+                        <div class="col-sm-4 font-weight-bold">Full Name:</div>
+                        <div class="col-sm-8 text-secondary">@Model.FullName</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-4 font-weight-bold">Email:</div>
+                        <div class="col-sm-8 text-secondary">@Model.Email</div>
+                    </div>
+
+                    <hr>
+                  
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<head>
+    <link rel="stylesheet" href="~/css/AdminLogo.css"/>
+</head>

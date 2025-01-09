@@ -1,0 +1,28 @@
+﻿@model List<Inquiry>
+
+<h2 class="mb-4">الاستفسارات</h2>
+
+<table class="table table-striped table-primary">
+    <thead>
+        <tr>
+            <th>ايميل الطالب</th>
+            <th>المادة</th>
+            <th>الاجراء</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var inquiry in Model)
+        {
+            <tr>
+                <td>@inquiry.StudentEmail</td>
+                <td>@inquiry.Subject</td>
+                <td>
+                    <!-- Details button that navigates to the Details page -->
+                    <a asp-action="Details" asp-route-id="@inquiry.Id" class="btn btn-primary btn-sm">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

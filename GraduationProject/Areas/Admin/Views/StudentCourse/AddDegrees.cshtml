@@ -1,0 +1,49 @@
+﻿@model StudentCourse
+
+@{
+    ViewData["Title"] = "Add Degrees of " + @Model.Course.Name + " to " + @Model.Student.FName + " " +@Model.Student.MName;
+}
+
+<div class="col-9">
+    <h1 style="font-size: 2.5em; font-weight: bold;">Add Degrees of @Model.Course.Name to @Model.Student.FName @Model.Student.MName</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-11">
+        <form action="/Admin/StudentCourse/AddDegrees" method="post">
+            <input type="hidden" id="courseId" name="courseId" value="@Model.CourseId" />
+            <input type="hidden" id="studentId" name="studentId" value="@Model.StudentId" />
+            <input type="hidden" id="StudentCourseId" name="StudentCourseId" value="@Model.StudentCourseId" />
+            <div class="form-group">
+                <label for="StudentAttendancedegree" class="control-label">Attendance ( /@Model.Course.AttendanceDegree )</label>
+                <input type="number" id="StudentAttendancedegree" name="StudentAttendancedegree" class="form-control" /> <br />
+            </div>
+            <div class="form-group">
+                <label for="StudentMidTermDegree" class="control-label">MidTerm ( /@Model.Course.MidTermDegree )</label>
+                <input type="number" id="StudentMidTermDegree" name="StudentMidTermDegree" class="form-control" /> <br />
+            </div>
+            <div class="form-group">
+                <label for="StudentPracticalDegree" class="control-label">Practical ( /@Model.Course.PracticalDegree )</label>
+                <input type="number" id="StudentPracticalDegree" name="StudentPracticalDegree" class="form-control" /> <br />
+            </div>
+            <div class="form-group">
+                <label for="StudentOralDegree" class="control-label">Oral ( /@Model.Course.OralDegree )</label>
+                <input type="number" id="StudentOralDegree" name="StudentOralDegree" class="form-control" /> <br />
+            </div>
+            <div class="form-group">
+                <label for="StudentFinalDegree" class="control-label">Final ( /@Model.Course.FinalDegree )</label>
+                <input type="number" id="StudentFinalDegree" name="StudentFinalDegree" class="form-control" /> <br />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary btn-lg w-100" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+
+<div class="mt-4 mb-4">
+    <a href="/Customer/ProfessorDetailes/StudentCourses?CourseID=@Model.CourseId" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+</div>

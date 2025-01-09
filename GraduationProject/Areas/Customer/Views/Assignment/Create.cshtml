@@ -1,0 +1,44 @@
+﻿@model Models.Assignment
+
+@{
+    ViewData["Title"] = "Add Assignment";
+}
+
+<h1>اضافة</h1>
+
+<h4>مهمة منزلية</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CourseId" class="control-label">رقم المادة</label>
+                <input asp-for="CourseId" class="form-control" />
+                <span asp-validation-for="CourseId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">الاسم</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocumentUrl" class="control-label">الوصف</label>
+                <input type="file" accept=".pdf,application/pdf" asp-for="DocumentUrl" class="form-control" />
+                <span asp-validation-for="DocumentUrl" class="text-danger"></span>
+            </div>
+            <input type="hidden" name="courseId" id="courseId" value="@ViewBag.CourseId" />
+            <div class="form-group"> <br />
+                <input type="submit" value="اضافة" class="btn" style="background-color:#2b6cac; color: #fff;" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index" class="btn" style="background-color:#2b6cac; color: #fff;" asp-route-courseId="@ViewBag.CourseId">العودة الي الوراء</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

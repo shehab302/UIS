@@ -1,0 +1,56 @@
+﻿@using Azure.Core
+@using Models
+@model List<Student>
+
+<div class="row mb-3">
+    <div class="col-md-9">
+        <h2>الطلاب لمادة  @ViewBag.CourseName:</h2>
+    </div>
+</div>
+@if (Model == null || !Model.Any())
+{
+    <p>لا يوجد طلاب لهذه المادة</p>
+}
+else
+{
+<div class="row">
+  
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">الاسم</th>
+                <th scope="col">رقم الضمان الاجتماعي</th>
+                <th scope="col">القسم</th>
+                <th scope="col">الاجراءات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-light">
+                    <td>@item.FName @item.MName @item.LName</td>
+                    <td>@item.SSN</td>
+                    <td>@item.Department.Name</td>
+                    <td>
+                            <a type="button" class="btn btn-primary" asp-action="AddDegrees" asp-controller="StudentCourse" asp-area="Admin" asp-route-studentId="@item.StudentId" asp-route-courseId="@ViewBag.CourseId">
+                            <i class="bi bi-pencil-square"></i>Add Degree
+                        </a>
+                        <a type="button" class="btn btn-primary" asp-action="Index2" asp-controller="StudentAssignment" asp-area="Customer" asp-route-studentId="@item.StudentId" asp-route-courseId="@ViewBag.CourseId">
+                                <i class="bi bi-list-task"></i>Student Assinment
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    
+</div>
+
+
+}
+<div class="mt-4">
+    <a href="/Customer/ProfessorDetailes/ProfessorCourses?ProfID=@ViewBag.ProfID" class="btn" style="background-color:#2b6cac; color: #fff;">
+        <i class="bi bi-arrow-left ms-2"></i>العودة الي الوراء
+    </a>
+</div>

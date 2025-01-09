@@ -1,0 +1,77 @@
+﻿@using Utility
+@model List<Course>
+
+<div class="container mt-4">
+    <!-- Header Section -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <h2 class="text-center fw-bold">مواد الدكتور</h2>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th>الاسم</th>
+                    <th>عدد الساعات</th>
+                    <th>الدرجة</th>
+                    <th>الوثيقة</th>
+                    <th>مستوي المادة</th>
+                    <th>اسم الدكتور</th>
+                    <th>الاجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Hours</td>
+                        <td>@item.Degree</td>
+                        <td>
+                            <a href="~/CourseDocument/@item.DocumentUrl" target="_blank" class="btn btn-link  text-decoration-none">
+                                <i class="bi bi-file-earmark"></i>الوثيقة
+                            </a>
+                        </td>
+                        <td>@item.CourseLevel</td>
+                        <td>@item.Department.Name</td>
+                        <td>
+                            <div class="d-flex flex-column gap-2">
+                               @*  <a asp-action="StudentCourses" asp-route-CourseID="@item.CourseId" class="btn btn-sm d-flex gap-3" style="background-color:#2b6cac; color: #fff;">
+                                    <i class="bi bi-bar-chart"></i>
+                                    <span>مواد الطالب</span>
+                                </a> *@
+                                <a asp-action="Index" asp-controller="Assignment" asp-area="Customer" asp-route-CourseId="@item.CourseId" class="btn btn-sm d-flex gap-3" style="background-color:#2b6cac; color: #fff;">
+                                    <i class="bi bi-pencil-square"></i>
+                                    <span>المهام المنزلية</span>
+                                </a>
+                                <a asp-action="Create" asp-controller="Lectures" asp-area="Customer" asp-route-CourseID="@item.CourseId" class="btn btn-sm d-flex gap-3" style="background-color:#2b6cac; color: #fff;">
+                                    <i class="bi bi-plus-square"></i>
+                                    <span>اضافة محاضرة</span>
+                                </a>
+                                <a asp-action="Index2" asp-controller="Lectures" asp-area="Customer" asp-route-CourseID="@item.CourseId" class="btn btn-sm d-flex gap-3" style="background-color:#2b6cac; color: #fff;">
+                                    <i class="bi bi-collection"></i>
+                                    <span>المحاضرات<span>
+                                </a>
+                                <a asp-action="Index2" asp-controller="Sections" asp-area="Customer" asp-route-CourseID="@item.CourseId" class="btn btn-sm d-flex gap-3" style="background-color:#2b6cac; color: #fff;">
+                                    <i class="bi bi-list-ul"></i>
+                                    <span>السكاشن</span>
+                                </a>
+                            </div>
+                              
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Back Button Section -->
+    <div class="mt-4 ">
+        <a href="/Admin/Management/Index_Professor" class="btn" style="background-color:#2b6cac; color: #fff;">
+            <i class="bi bi-arrow-left ms-2"></i>العودة الي الوراء
+        </a>
+    </div>
+</div>

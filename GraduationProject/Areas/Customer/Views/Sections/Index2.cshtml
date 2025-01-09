@@ -1,0 +1,113 @@
+﻿@using Utility
+@model List<Sections>
+@section Scripts {
+    <partial name="_TempDataPartial.cshtml">
+}
+    <div class="row mb-3">
+        <div class="col-9">
+            <h1 style="font-size: 2.5em; font-weight: bold;">السكاشن</h1>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <form asp-action="Index">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <input type="text" placeholder="البحث بواسطة الاسم" class="form-control" name="search">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn" style="background-color:#2b6cac; color: #fff;">بحث</button>
+                </div>
+            </div>
+        </form>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+            <div class="alert alert-warning">@ViewBag.ErrorMessage</div>
+    }
+
+
+        <table class="table table-hover table-primary table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 15%;" scope="col">الاسم</th>
+                    <th style="width: 10%;" scope="col">الوثيقة</th>
+                    <th style="width: 10%;" scope="col">المادة</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                    <tr class="table-light">
+                        <td>@item.Name</td>
+                        <td><a href="~/LectureDocument/@item.SecURL" target="_blank " class=" text-decoration-none">Document</a></td>
+                        <td>@item.Course.Name</td>
+                        
+                    </tr>
+            }
+            </tbody>
+        </table>
+
+
+    </div>
+@if (User.IsInRole(SD.Asseitant))
+{
+    <div class="mt-4 mb-4">
+        <a href="/Customer/Assistant/AssistantCourses?AssID=@ViewBag.AssID" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Back to List
+        </a>
+    </div>
+    }
+@if (User.IsInRole(SD.Professor))
+{
+    <div class="mt-4 mb-4">
+            <a href="/Customer/ProfessorDetailes/ProfessorCourses?ProfID=@ViewBag.ProfID" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Back to List
+        </a>
+    </div>
+    }
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var deleteButtons = document.querySelectorAll('.btn-delete');
+            var deleteForm = document.getElementById('deleteForm');
+            var courseIdInput = document.getElementById('deleteCoursetId');
+
+            deleteButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var courseId = this.getAttribute('data-id');
+                    courseIdInput.value = courseId;
+                    deleteForm.action = '/Admin/Course/Delete';
+                });
+            });
+        });
+    </script>
+
+@*  pagination *@
+
+
+@{
+    var count = Model.Count;
+}
+    <div class="mt-4 mb-4">
+        <a href="/Customer/ProfessorDetailes/ProfessorCourses?ProfID=@ViewBag.ProfID" class="btn" style="background-color:#2b6cac; color: #fff;">
+            <i class="bi bi-arrow-left ms-2"></i>العودة الي الوراء
+        </a>
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item @(ViewBag.CurrentPage <= 1 ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Index", "Course", new { page = ViewBag.CurrentPage - 1 })">السابق</a>
+            </li>
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link border-0" style="background-color:#2b6cac; color: #fff;" href="@Url.Action("Index", "Course", new { page = i })">@i</a>
+                </li>
+        }
+            <li class="page-item @(ViewBag.CurrentPage >= ViewBag.TotalPages ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Index", "Course", new { page = ViewBag.CurrentPage + 1 })">التالي</a>
+            </li>
+        </ul>
+    </nav>
+    

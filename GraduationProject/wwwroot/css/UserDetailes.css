@@ -1,0 +1,93 @@
+﻿body {
+    background-color: #f4f4f9;
+}
+
+.card-custom {
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+    .card-custom:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+.card-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.card-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.card-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.card-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.card-warning {
+    background-color: #ffc107;
+    color: black;
+}
+
+.card-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.card-light {
+    background-color: #f8f9fa;
+    color: black;
+}
+
+.card-dark {
+    background-color: #343a40;
+    color: white;
+}
+
+.schedule-table {
+    margin-top: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+    .schedule-table th, .schedule-table td {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .schedule-table thead {
+        background-color: #343a40;
+        color: white;
+    }
+
+    .schedule-table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+.details-table {
+    margin-top: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+    .details-table th, .details-table td {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .details-table thead {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .details-table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }

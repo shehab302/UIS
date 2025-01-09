@@ -1,0 +1,173 @@
+﻿
+    <div class="container mt-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card card-custom card-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">Name</h5>
+                        <h5 class="card-title">@Model.FName @Model.MName @Model.LName</h5>
+                        <i class="fa fa-user-graduate fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">SSN</h5>
+                        <p class="card-text">@Model.SSN</p>
+                        <i class="fa fa-address-card fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-success">
+                    <div class="card-body">
+                        <h5 class="card-title">Level</h5>
+                        <p class="card-text">@Model.Level</p>
+                        <i class="fa fa-user fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">Department</h5>
+                        <p class="card-text">@Model.Department.Name</p>
+                        <i class="fa fa-building fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-warning">
+                    <div class="card-body">
+                        <h5 class="card-title">Gender</h5>
+                        <p class="card-text">@Model.Gender</p>
+                        <i class="fa fa-transgender-alt fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-info">
+                    <div class="card-body">
+                        <h5 class="card-title">Address</h5>
+                        <p class="card-text">@Model.Address</p>
+                        <i class="fa fa-map-marker fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Email</h5>
+                        <p class="card-text">@Model.Email</p>
+                        <i class="fa fa-envelope fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-dark">
+                    <div class="card-body">
+                        <h5 class="card-title">Nationality</h5>
+                        <p class="card-text">@Model.Nationailty</p>
+                        <i class="fa fa-flag fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+
+            @{
+                var birthDate = Model.BirthDate;
+                var today = DateTime.Today;
+                var age = today.Year - birthDate.Year;
+            }
+            <div class="col-md-4">
+                <div class="card card-custom card-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">Age</h5>
+                        <p class="card-text">@age years old</p>
+                        <i class="fa fa-birthday-cake fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-12">
+            <div class="card card-custom card-success">
+                <div class="card-body">
+                    <h5 class="card-title">Phone Numbers</h5>
+                    <ul>
+                        @if (Model.StudentPhones != null && Model.StudentPhones.Count > 0)
+                        {
+                            @foreach (var phone in Model.StudentPhones)
+                            {
+                                <li>@phone.Phone</li>
+                            }
+                        }
+                        else
+                        {
+                            <p>No phone numbers available.</p>
+                        }
+                    </ul>
+                    <i class="fa fa-phone fa-3x float-end"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+      
+        <!-- Professional Details Table -->
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="card details-table">
+                    <div class="card-header text-white" style="background-color: #007bff;">
+                        <h5 class="mb-0">Professors Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                                <thead>
+ 
+                            </thead>
+                            <tbody id="details-body">
+                                @foreach (var prof in ViewBag.professors)
+                                {
+                                    <tr>
+                                        <td><img src="~/Img/@prof.ImgUrl" alt="Avatar" width="80" height="80" class="rounded-circle">@prof.FName @prof.MName @prof.LName</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<head>
+    <link rel="stylesheet " href="~/css/UserDetailes.css" />
+</head>
+
+    <!-- JavaScript for handling day click -->
+    <script>
+        document.querySelectorAll('.schedule-table th').forEach(dayElement => {
+            dayElement.addEventListener('click', function () {
+                var day = this.textContent.trim();
+
+                fetch(`/Student/GetSchedule?day=${day}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const scheduleBody = document.getElementById('schedule-body');
+                        scheduleBody.innerHTML = '';
+                        data.forEach(item => {
+                            const row = `<tr>
+                                        <td>${item.Day}</td>
+                                        <td>${item.Time}</td>
+                                        <td>${item.Subject}</td>
+                                        <td>${item.Room}</td>
+                                    </tr>`;
+                            scheduleBody.innerHTML += row;
+                        });
+                    })
+                    .catch(error => console.error('Error fetching schedule:', error));
+            });
+        });
+    </script>
+

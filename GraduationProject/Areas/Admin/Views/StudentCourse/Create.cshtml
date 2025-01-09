@@ -1,0 +1,24 @@
+﻿@model Course
+
+@{
+    ViewData["Title"] = "Add Student to " + @Model.Name;
+}
+
+<div class="row">
+    <div class="col-md-11">
+        <form action="/Admin/StudentCourse/Create" method="post">
+            <div class="form-group">
+                <label for="StudentSSN" class="control-label form-label">رقم الضمان الاجتماعي للطالب</label>
+                <input type="text" id="StudentSSN" name="StudentSSN" class="form-control" /> <br />
+            </div>
+            <input type="hidden" id="courseId" name="courseId" value="@Model.CourseId" />
+            <div class="form-group">
+                <input type="submit" value="اضافة" class="btn btn-lg w-100" style="background-color:#2b6cac; color: #fff;" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a href="/Admin/Course/Index" class="btn" style="background-color:#2b6cac; color: #fff;"><i class="bi bi-arrow-left ms-2"></i>العودة الي الوراء</a>
+</div>

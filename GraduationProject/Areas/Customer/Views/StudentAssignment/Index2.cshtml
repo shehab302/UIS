@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Student Assignments";
+}
+
+@model List<StudentAssignment>
+
+
+<div class="row mb-3">
+    <div class="col-9">
+        <h1 style="font-size: 2.5em; font-weight: bold;">Student Assignments</h1>
+    </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th style="width: 10%;" scope="col">Name</th>
+            <th style="width: 10%;" scope="col">Document</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-light">
+                <td>@item.Assignment.Name</td>
+                <td><a href="~/StudentAssignment/@item.DocumentUrl" target="_blank">Document</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="mt-4 mb-4">
+    <a href="/Customer/ProfessorDetailes/StudentCourses?CourseID=@ViewBag.courseId"
+        class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+</div>

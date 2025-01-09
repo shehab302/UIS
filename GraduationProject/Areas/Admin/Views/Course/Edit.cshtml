@@ -1,0 +1,89 @@
+﻿@using Models;
+@model Models.Course
+
+@{
+    ViewData["Title"] = "Edit Course";
+}
+
+ 
+<hr />
+<div class="row">
+    <div class="col-md-11">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CourseId" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">الاسم</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">الوصف</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hours" class="control-label">عدد الساعات</label>
+                <input asp-for="Hours" class="form-control" />
+                <span asp-validation-for="Hours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AttendanceDegree" class="control-label">درجة الحضور</label>
+                <input asp-for="AttendanceDegree" class="form-control" />
+                <span asp-validation-for="AttendanceDegree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PracticalDegree" class="control-label">درجة العملي</label>
+                <input asp-for="PracticalDegree" class="form-control" />
+                <span asp-validation-for="PracticalDegree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MidTermDegree" class="control-label">درجة الميدترم</label>
+                <input asp-for="MidTermDegree" class="form-control" />
+                <span asp-validation-for="MidTermDegree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OralDegree" class="control-label">درجة الشفوي</label>
+                <input asp-for="OralDegree" class="form-control" />
+                <span asp-validation-for="OralDegree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinalDegree" class="control-label">درجة الفاينل</label>
+                <input asp-for="FinalDegree" class="form-control" />
+                <span asp-validation-for="FinalDegree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocumentUrl" class="control-label">الوثيقة</label>
+                <input type="file" accept=".pdf,application/pdf" asp-for="DocumentUrl" class="form-control" />
+                <span asp-validation-for="DocumentUrl" class="text-danger"></span>
+            </div>
+                <input type="hidden" asp-for="CourseLevel" class="form-control" />
+            <div class="form-group">
+                <label asp-for="MemberId" class="control-label">الدكتور</label>
+                <select asp-for="MemberId" class="form-control" asp-items="ViewBag.members"><option>Select Professor</option></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AssistantId" class="control-label">المعيد</label>
+                <select asp-for="AssistantId" class="form-control" asp-items="ViewBag.members2"><option>Select Assistant</option></select>
+                <span asp-validation-for="AssistantId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DepartmentId" class="control-label">القسم</label>
+                <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.departments"><option>Select Department</option></select>
+            </div><br />
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-primary btn-lg w-100" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index">العودة الي الوراء</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

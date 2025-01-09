@@ -1,0 +1,114 @@
+﻿@model Member
+<div class="container mt-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card card-custom card-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">Name</h5>
+                        <h5 class="card-title">@Model.FName @Model.MName @Model.LName</h5>
+                        <i class="fa fa-user-graduate fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">SSN</h5>
+                        <p class="card-text">@Model.SSN</p>
+                        <i class="fa fa-address-card fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-md-4">
+                <div class="card card-custom card-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">Department</h5>
+                        <p class="card-text">@Model.Department.Name</p>
+                        <i class="fa fa-building fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-warning">
+                    <div class="card-body">
+                        <h5 class="card-title">Gender</h5>
+                        <p class="card-text">@Model.Gender</p>
+                        <i class="fa fa-transgender-alt fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-info">
+                    <div class="card-body">
+                        <h5 class="card-title">Address</h5>
+                        <p class="card-text">@Model.Address</p>
+                        <i class="fa fa-map-marker fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Email</h5>
+                        <p class="card-text">@Model.Email</p>
+                        <i class="fa fa-envelope fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-light">
+                    <div class="card-body">
+                        <h5 class="card-title">Experence</h5>
+                        <p class="card-text">@Model.Experence</p>
+                        <i class="fa fa-envelope fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom card-dark">
+                    <div class="card-body">
+                        <h5 class="card-title">Nationality</h5>
+                        <p class="card-text">@Model.Nationailty</p>
+                        <i class="fa fa-flag fa-3x float-end"></i>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-4">
+            <div class="card card-custom card-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Age</h5>
+                    <p class="card-text">@ViewBag.age</p>
+                    <i class="fa fa-birthday-cake fa-3x float-end"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card card-custom card-success">
+                <div class="card-body">
+                    <h5 class="card-title">Phone Numbers</h5>
+                    <ul>
+                        @if (Model.MemberPhones != null && Model.MemberPhones.Count > 0)
+                        {
+                            @foreach (var phone in Model.MemberPhones)
+                            {
+                                <li>@phone.Phone</li>
+                            }
+                        }
+                        else
+                        {
+                            <p>No phone numbers available.</p>
+                        }
+                    </ul>
+                    <i class="fa fa-phone fa-3x float-end"></i>
+                </div>
+            </div>
+        </div>
+          
+        </div>
+
+     </div>
+
+<head>
+    <link rel="stylesheet " href="~/css/UserDetailes.css" />
+</head>

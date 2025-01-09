@@ -1,0 +1,118 @@
+﻿@model Models.ViewModels.EmolyeeVM
+@section Scripts {
+
+    <partial name="_TempDataPartial.cshtml">
+        <partial name="_ValidationScriptsPartial.cshtml">
+}
+
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">اضافة عامل جديد</h2>
+            <form asp-action="AddEmpolyee" enctype="multipart/form-data">
+                <!-- SSN -->
+                <div class="mb-3">
+                    <label class="form-label">رقم الضمان الاجتماعي</label>
+                    <input type="text" class="form-control" asp-for="SSN">
+                    <span asp-validation-for="SSN" class="text-warning"></span>
+
+                </div>
+
+                <!-- First Name -->
+                <div class=" row mb-3 ">
+                    <div class="col-4">
+                        <label class="form-label">الاسم الاول</label>
+                        <input type="text" class="form-control" asp-for="FName">
+                        <span asp-validation-for="FName" class="text-warning"></span>
+                    </div>
+                    <div class="col-4">
+                        <label class="form-label">الاسم الثاني</label>
+                        <input type="text" class="form-control" asp-for="MName">
+                        <span asp-validation-for="MName" class="text-warning"></span>
+                    </div>
+                    <div class="col-4">
+                        <label class="form-label">الاسم الثالث</label>
+                        <input type="text" class="form-control" asp-for="LName">
+                        <span asp-validation-for="LName" class="text-warning"></span>
+                    </div>
+                </div>
+
+
+                <div class=" mb-3">
+            
+                    <div>
+                        <label class="form-label">
+                            حمل صورة
+                        </label>
+                        <input type="file" class="form-control" asp-for="ImgUrl">
+                        <span asp-validation-for="ImgUrl" class="text-warning"></span>
+
+                    </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="mb-3">
+                    <label for="gender" class="form-label">النوع</label>
+                    <select class="form-select" asp-for="Gender">
+                        <option value="">اختر النوع</option>
+                @foreach (var gender in ViewBag.EnumGender)
+                {
+
+                            <option value="@gender">@gender</option>
+
+                }
+
+                    </select>
+                    <span asp-validation-for="Gender" class="text-warning"></span>
+
+                </div>
+
+                <!-- Address -->
+                <div class="mb-3">
+                    <label for="address" class="form-label">العنوان</label>
+                    <input type="text" class="form-control" asp-for="Address">
+                    <span asp-validation-for="Address" class="text-warning"></span>
+
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">الايميل</label>
+                    <input type="email" class="form-control" asp-for="Email">
+                    <span asp-validation-for="Email" class="text-warning"></span>
+
+                </div>
+
+               
+
+
+                <!-- Nationality -->
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label class="form-label">الجنسية</label>
+                        <input type="text" class="form-control" asp-for="Nationailty">
+                        <span asp-validation-for="Nationailty" class="text-warning"></span>
+                    </div>
+
+
+                    <div class="col-6">
+                    <label for="birthDate" class="form-label">يوم الميلاد</label>
+                    <input type="date" class="form-control" asp-for="BirthDate">
+                    <span asp-validation-for="BirthDate" class="text-warning"></span>
+
+                </div>
+
+
+                </div>
+
+                <!-- Birth Date -->
+                <div class="mb-3">
+                    <label for="birthDate" class="form-label">ارقام التليفون</label>
+                    <input type="text" class="form-control" asp-for="PhoneNumer">
+                    <span asp-validation-for="PhoneNumer" class="text-warning"></span>
+
+                </div>
+
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-lg w-100" style="background-color:#2b6cac; color: #fff;">اضافة</button>
+            </form>
+        </div>

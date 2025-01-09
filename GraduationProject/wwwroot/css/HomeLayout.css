@@ -1,0 +1,59 @@
+﻿html {
+    direction: rtl;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: "Cairo", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings: "slnt" 0;
+}
+
+.nav-link {
+    position: relative;
+    &:hover
+
+{
+    color: #2b6cac;
+}
+
+}
+
+.nav-link:hover::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    bottom: 0;
+    box-sizing: border-box;
+    width: calc(100% - 16px);
+    height: 2px;
+    background-color: #2b6cac;
+}
+
+.navbar {
+    height: 91px;
+}
+
+.hero-container {
+    height: calc(100vh - 91px);
+    & .row, img
+
+    {
+        height: 100% !important;
+    }
+}
+
+
+
+/*login style*/
+.form-image {
+    background-image: url("../Img/study.jpeg");
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    clip-path: polygon(20% 0, 100% 0%, 100% 100%, 0 100%);
+}
+

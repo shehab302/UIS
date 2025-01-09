@@ -1,0 +1,49 @@
+﻿@model StudentCourse
+
+@{
+    ViewData["Title"] = Model.Course.Name + " Degrees";
+}
+
+
+
+
+
+<div class="row mb-3">
+    <div class="col-9">
+        <h1 style="font-size: 2.5em; font-weight: bold;">@Model.Course.Name Degrees</h1>
+    </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th style="width: 15%;" scope="col">Attendance</th>
+            <th style="width: 15%;" scope="col">MidTerm</th>
+            <th style="width: 15%;" scope="col">Practical</th>
+            <th style="width: 15%;" scope="col">Oral</th>
+            <th style="width: 15%;" scope="col">Final</th>
+            <th style="width: 15%;" scope="col">Total</th>
+            <th style="width: 10%;" scope="col">Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <tr class="table-light">
+            <td>@Model.StudentAttendancedegree / @Model.Course.AttendanceDegree</td>
+            <td>@Model.StudentMidTermDegree / @Model.Course.MidTermDegree</td>
+            <td>@Model.StudentPracticalDegree / @Model.Course.PracticalDegree</td>
+            <td>@Model.StudentOralDegree / @Model.Course.OralDegree</td>
+            <td>@Model.StudentFinalDegree / @Model.Course.FinalDegree</td>
+            <td>@Model.Degree / @Model.Course.Degree</td>
+            <td>@Model.Grade</td>
+            </tr>
+        
+    </tbody>
+</table>
+
+<div class="mt-4">
+    <a href="/Admin/StudentCourse/Index2?studentId=@Model.StudentId&level=@Model.Course.CourseLevel" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+</div>
+
